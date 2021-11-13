@@ -1,6 +1,6 @@
 extends index.pug
 
-//- block scripts
+block script
 
 block style 
     style
@@ -13,24 +13,27 @@ block content
 
     section#EventSection
         h2 Event Types
-        div.card
-            h3 Technical
-            div.card-box
-                div.card-img
-                    img(src="/static/Technical.png")
-                div.card-content
-                    p technical ke bare mein kuch
-        div.card
-            h3 Non-Technical
-            div.card-box
-                div.card-img
-                    img(src="/static/Non_Technical.png")
-                div.card-content
-                    p non-technical ke bare mein
-        div.card
-            h3 Webinars
-            div.card-box
-                div.card-img
-                    img(src="/static/Webinars.png")
-                div.card-content
-                    p online seminars
+        a(href="/home/technical")
+            div(class="card")
+                h3 Technical
+                div( class="card-box" ) 
+                    div.card-img
+                        img(src="/static/Technical.png")
+                    div.card-content
+                        p technical ke bare mein kuch
+        a(href="/home/non_technical") 
+            div.card
+                h3 Non-Technical
+                div.card-box
+                    div.card-img
+                        img(src="/static/Non_Technical.png")
+                    div.card-content
+                        p non-technical ke bare mein
+        a(href="/home/webinar")
+            div.card
+                h3 Webinars
+                div.card-box
+                    div.card-img
+                        img(src="/static/Webinars.png")
+                    div.card-content
+                        p online seminars
