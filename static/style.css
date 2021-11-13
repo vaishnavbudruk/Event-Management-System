@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+
+/* ***************Logo****************** */
+
+
+/* ***************Navbar**************** */
+
+#navbar {
+    background-color: black;
+    padding: 14px 6px;
+}
+
+#navbar ul {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+#navbar li {
+    list-style: none;
+}
+
+#navbar li a {
+    text-decoration: none;
+    padding: 5px 32px;
+    color: white;
+    font-weight: bold;
+    font-size: 1.05rem;
+}
+
+#navbar li a:hover {
+    color: rgb(109, 245, 177);
+}
+
+
+/* ***************Profile**************** */
+
+#profile {
+    margin-left: 480px;
+}
+
+
+/* ***************Intro Section (ongoing events)**************** */
+
+#introSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 35px;
+    font-size: 44px;
+    color: rgb(0, 0, 0);
+    background-color: rgb(68, 68, 68);
+    height: 300px;
+    /* background-color: red; */
+}
+
+
+/* ***************Event types**************** */
+
+#EventSection {
+    display: block;
+    margin: auto;
+    width: 87%;
+    height: 300px;
+}
+
+#EventSection h2 {
+    font-size: 30px;
+    text-align: center;
+    padding-top: 14px;
+}
+
+.card {
+    display: inline-block;
+    background-color: #fef1f1;
+    border: 2px solid black;
+    border-radius: 10px;
+    height: 192px;
+    width: 29.5%;
+    margin: 25px 20px;
+}
+
+.card-content {
+    padding: 0px 10px;
+}
+
+.card:hover {
+    transform: scale(1.02);
+    box-shadow: 4px 4px 8px black;
+    cursor: pointer;
+}
+
+.card h3 {
+    text-align: center;
+    margin-top: 11px;
+}
+
+.card-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card-img {
+    height: 108px;
+    padding: 10px 12px;
+}
+
+.card-img img {
+    height: inherit;
+    padding: 0 12px;
+}
+
+
+/* **************Footer************** */
+
+#footer {
+    display: flex;
+    height: 18px;
+    color: white;
+    font-size: 8px;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    font-family: initial;
+    font-style: initial;
+}

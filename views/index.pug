@@ -1,0 +1,21 @@
+doctype html
+html
+  head
+    title Clubs and Chapter Event Management Website
+    //- block scripts
+    block style 
+    //- block script 
+  body
+    nav#navbar
+        ul
+            div#logo
+                img(src="/static/logo.png")
+                | Website logo
+            li #[a(href="/") Home] 
+            li #[a(href="/merch") Merchandise]
+            li #[a(href="/registrations") My Registrations]
+            li#profile #[a(href="/profile") Profile]
+            //- li #[a(href="/contact") Contact us]
+    block content
+    footer#footer 
+        | Copyright © 2021 EMeet.com | All rights reserved

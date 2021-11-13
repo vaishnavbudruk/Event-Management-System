@@ -1,0 +1,36 @@
+extends index.pug
+
+//- block scripts
+
+block style 
+    style
+      include ../static/style.css
+
+block content
+    //- Semantic tags
+    section#introSection
+        div ongoing event cards
+
+    section#EventSection
+        h2 Event Types
+        div.card
+            h3 Technical
+            div.card-box
+                div.card-img
+                    //- img(src="/static/dance1.png")
+                div.card-content
+                    p technical ke bare mein kuch
+        div.card
+            h3 Non-Technical
+            div.card-box
+                div.card-img
+                    //- img(src="/static/dance2.png")
+                div.card-content
+                    p non-technical ke bare mein
+        div.card
+            h3 Webinars
+            div.card-box
+                div.card-img
+                    //- img(src="/static/dance3.png")
+                div.card-content
+                    p online seminars

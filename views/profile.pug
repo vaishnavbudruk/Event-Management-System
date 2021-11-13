@@ -1,0 +1,18 @@
+extends index.pug
+
+
+block style 
+    style
+      include ../static/style.css
+      include ../static/styleProfile.css
+
+block content 
+    div.container
+        h1 Profile
+        form(action="/profile",method="post",class="myForm") 
+            input(type="text",class="myInput",name="name",placeholder="Enter your name")
+            input(type="text",class="myInput",name="desc",placeholder="Registration Number")
+            input(type="phone",class="myInput",name="phone",placeholder="Enter your Phone no.")
+            input(type="email",class="myInput",name="email",placeholder="Enter your Email ID")
+            button.BTN 
+                | Submit
