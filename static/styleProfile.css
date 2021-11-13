@@ -1,12 +1,21 @@
+::placeholder {
+    color: rgb(241, 237, 237);
+    opacity: 1;
+}
+
 .container {
     display: flex;
     flex-direction: column;
-    min-height: 86.3vh;
+    min-height: 86.9vh;
+    background: center/cover no-repeat url(/static/profile.jpg);
+    z-index: -1;
+    opacity: 0.88;
 }
 
 h1 {
     text-align: center;
     margin: 12px 0;
+    font-weight: bold;
 }
 
 .myForm {
@@ -18,12 +27,14 @@ h1 {
 
 .myInput {
     outline: none;
+    border: none;
+    background: none;
+    border-bottom: 2px solid black;
     width: 40%;
     padding: 9px;
     margin: 8px;
-    font-size: 14px;
-    border: 2px solid black;
-    border-radius: 14px;
+    font-size: 16px;
+    color: white;
 }
 
 .BTN {
@@ -39,4 +50,9 @@ h1 {
 
 .BTN:hover {
     background-color: rgb(70, 70, 70);
+}
+
+.box {
+    width: 70%;
+    text-align: center;
 }

@@ -2,6 +2,7 @@ doctype html
 html
   head
     title Clubs and Chapter Event Management Website
+    <script src="https://kit.fontawesome.com/0b92e2597e.js" crossorigin="anonymous"></script>
     //- block scripts
     block style 
     //- block script 
@@ -9,13 +10,11 @@ html
     nav#navbar
         ul
             div#logo
-                img(src="/static/logo.png")
-                | Website logo
+                img(class="lg" src="/static/logo.png")
             li #[a(href="/") Home] 
             li #[a(href="/merch") Merchandise]
             li #[a(href="/registrations") My Registrations]
-            li#profile #[a(href="/profile") Profile]
-            //- li #[a(href="/contact") Contact us]
+            li#profile #[a(href="/profile") <i class="fa fa-user-circle-o fa-lg"></i>]
     block content
     footer#footer 
         | Copyright © 2021 EMeet.com | All rights reserved

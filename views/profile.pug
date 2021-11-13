@@ -9,10 +9,18 @@ block style
 block content 
     div.container
         h1 Profile
-        form(action="/profile",method="post",class="myForm") 
-            input(type="text",class="myInput",name="name",placeholder="Enter your name")
-            input(type="text",class="myInput",name="desc",placeholder="Registration Number")
-            input(type="phone",class="myInput",name="phone",placeholder="Enter your Phone no.")
-            input(type="email",class="myInput",name="email",placeholder="Enter your Email ID")
+        form(action="/profile",method="post",class="myForm")
+            div.box
+                <i class="fa fa-user"></i> 
+                input(type="text",class="myInput",name="name",placeholder=" Enter your name")
+            div.box
+                <i class="fa fa-list-ol"></i>
+                input(type="text",class="myInput",name="desc",placeholder="Registration Number")
+            div.box
+                <i class="fa fa-phone"></i>
+                input(type="phone",class="myInput",name="phone",placeholder="Enter your Phone no.")
+            div.box
+                <i class="fa fa-envelope"></i>
+                input(type="email",class="myInput",name="email",placeholder="Enter your Email ID")
             button.BTN 
                 | Submit
