@@ -1,0 +1,52 @@
+#Merchandise {
+    display: block;
+    margin: auto;
+    min-height: 86.9vh;
+    background: center/cover no-repeat url(/static/wardrobe.jpg);
+    z-index: -1;
+    opacity: 0.88;
+}
+
+#Merchandise h2 {
+    font-size: 30px;
+    text-align: center;
+    padding-top: 14px;
+    padding-bottom: 40px;
+}
+
+.Merchcard {
+    display: inline-block;
+    /* background-color: #fef1f1; */
+    /* border: 2px solid black; */
+    border-radius: 10px;
+    height: 192px;
+    width: 29.5%;
+    margin: 25px 20px;
+}
+
+.Merchcard-img:hover {
+    transform: scale(1.2);
+    /* box-shadow: 4px 4px 8px black; */
+    cursor: pointer;
+}
+
+.Merchcard h3 {
+    text-align: center;
+    margin-top: 11px;
+}
+
+.Merchcard-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Merchcard-img {
+    height: 108px;
+    padding: 10px 12px;
+}
+
+.Merchcard-img img {
+    height: inherit;
+    padding: 0 12px;
+}

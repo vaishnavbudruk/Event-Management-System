@@ -4,7 +4,26 @@ extends index.pug
 block style 
     style
       include ../static/style.css
+      include ../static/styleMerch.css
 
 block content 
-    div.container
-        h1 merch list
+    section#Merchandise
+        h2 Merchandise
+        a(href="http://localhost:8080//technical")
+            div(class="Merchcard")
+                h3 merch1
+                div( class="Merchcard-box" ) 
+                    div.Merchcard-img
+                        img(src="/static/Technical.png")
+        a(href="http://localhost:8080//non_technical") 
+            div.Merchcard
+                h3 merch2
+                div.Merchcard-box
+                    div.Merchcard-img
+                        img(src="/static/Non_Technical.png")
+        a(href="http://localhost:8080//webinar")
+            div.Merchcard
+                h3 merch3
+                div.Merchcard-box
+                    div.Merchcard-img
+                        img(src="/static/Webinars.png")
