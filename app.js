@@ -1,12 +1,14 @@
+
 const express = require('express');
 const path = require('path');
 const app = express();
-const port = 8080;
+const port = 8081;
 
 // Mongoose
 var mongoose = require("mongoose");
-const bodyparser = require("body-parser");
+var bodyParser = require("body-parser");
 mongoose.connect('mongodb://localhost/IWP1', { useNewUrlParser: true, useUnifiedTopology: true });
+
 
 // Define Mongoose Schema
 const IWP1Schema = new mongoose.Schema({
@@ -34,7 +36,7 @@ const Profile = mongoose.model('Profile', IWP1Schema);
 
 //Express Specific stuff
 app.use('/static', express.static('static')); //For serving static files
-app.use(express.urlencoded())
+app.use(express.urlencoded({ extended: false }))
 
 //PUG SPecific stuff
 
