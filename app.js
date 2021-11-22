@@ -4,6 +4,10 @@ const path = require('path');
 const app = express();
 const port = 8081;
 
+const { check, validationResult} = require("express-validator/check");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+
 // Mongoose
 var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
@@ -13,6 +17,11 @@ mongoose.connect('mongodb://localhost/IWP1', { useNewUrlParser: true, useUnified
 // Define Mongoose Schema
 const IWP1Schema = new mongoose.Schema({
     name: {
+        type: String,
+        required: true
+    },
+    passwd:
+    {
         type: String,
         required: true
     },
@@ -71,6 +80,25 @@ app.get('/registrations', (req, res) => {
     const params = {}
     res.status(200).render('registrations.pug', params);
 });
+
+app.get('/login', (req, res) => {
+    const params = {}
+    res.status(200).render('login.pug', params);
+});
+app.post('/login', (req, res) => {
+    console.log(req.body);
+    Profile.find({$and:[{ name: req.body.name},{passwd: req.body.passwd}]}, function(err, docs){
+            if (err) {
+                console.log('Hello');
+                return handleError(err);
+            }
+            else {
+                console.log("First function call : ", docs[0]['passwd']);
+            }
+        });
+
+});
+
 app.get('//technical', (req, res) => {
     const params = {}
     res.status(200).render('technical.pug', params);
