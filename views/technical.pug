@@ -1,19 +1,5 @@
 extends index.pug
 
-const anst=[ {
-    _id: new ObjectId("619d57c021ca3502708a0222"),
-    eventname: 'rfe',
-    eventdes: 'adf',
-    regfee: 'fadf',
-    orgnam1: 'faf',
-    orgphone1: 'afdf',
-    orgnam2: 'asdf',
-    orgphone2: 'afad',
-    eventtype: 'Technical',
-    __v: 0
-  }
-]
-
 block style 
     style
       include ../static/style.css
@@ -21,7 +7,13 @@ block style
 block content 
     div.container
         h1 Technical
-        #events-list
-            each event in anst
-                .event 
-                    .event-name=event.eventname
+    .blocks 
+        ul 
+            each article,i in anst
+                form(action="/eventcreation",method="post",class="myForm") 
+                    li= article.eventname
+                    li= article.eventdes 
+                    li= article.regfee 
+                    li= article.orgnam1
+                    li= article.orgphone1
+                    input(type='submit', name='eventname', value='article.eventname')

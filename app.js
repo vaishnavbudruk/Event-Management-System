@@ -220,20 +220,38 @@ app.get('//technical', (req, res) => {
             }
             else{
                 console.log(ans);
+                res.render('technical.pug', {anst: ans});
             }
         });
-        var anst=ans;
-    res.render('technical.pug', anst=anst);
+    
 });
 
 
 app.get('//non_technical', (req, res) => {
-    const params = {}
-    res.status(200).render('non_technical.pug', params);
+    var ans;
+        eventProfile.find({eventtype:"Non-Technical" }, function(err, ans){
+            if (err){
+                console.log(err);
+            }
+            else{
+                console.log(ans);
+                res.render('technical.pug', {anst: ans});
+            }
+        });
+    
 });
 app.get('//webinar', (req, res) => {
-    const params = {}
-    res.status(200).render('webinar.pug', params);
+    var ans;
+        eventProfile.find({eventtype:"Webinar" }, function(err, ans){
+            if (err){
+                console.log(err);
+            }
+            else{
+                console.log(ans);
+                res.render('technical.pug', {anst: ans});
+            }
+        });
+    
 });
 
 //Start the server

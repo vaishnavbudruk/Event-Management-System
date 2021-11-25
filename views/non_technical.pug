@@ -1,10 +1,17 @@
 extends index.pug
 
-
 block style 
     style
       include ../static/style.css
 
 block content 
     div.container
-        h1 Non-Technical
+        h1 Non- Technical
+    .blocks 
+        ul 
+            each article,i in anst 
+                    li= article.eventname
+                    li= article.eventdes 
+                    li= article.regfee 
+                    li= article.orgnam1
+                    li= article.orgphone1

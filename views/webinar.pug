@@ -1,6 +1,5 @@
 extends index.pug
 
-
 block style 
     style
       include ../static/style.css
@@ -8,3 +7,11 @@ block style
 block content 
     div.container
         h1 Webinars
+    .blocks 
+        ul 
+            each article,i in anst 
+                    li= article.eventname
+                    li= article.eventdes 
+                    li= article.regfee 
+                    li= article.orgnam1
+                    li= article.orgphone1
