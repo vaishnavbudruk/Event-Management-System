@@ -1,0 +1,23 @@
+extends index.pug
+
+block style 
+    style
+      include ../static/style.css
+      include ../static/styleProfile.css
+
+block content 
+    div.container
+        h1 Organizer Login
+        form(action="/orglogin",method="post",class="myForm")
+            div.box
+                <i class="fa fa-user"></i> 
+                input(type="name",class="myInput",name="name",placeholder=" Enter Chapter/Club name: ")
+            div.box
+                <i class="fa fa-pass"></i>
+                input(type="passwd",class="myInput",name="passwd",placeholder="Password: ")
+            button.BTN 
+                | Submit
+            
+        form(method='get', action='/studentlogin')
+            button.BTN 
+                | Login as Student

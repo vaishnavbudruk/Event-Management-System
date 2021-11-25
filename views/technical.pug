@@ -1,5 +1,18 @@
 extends index.pug
 
+const anst=[ {
+    _id: new ObjectId("619d57c021ca3502708a0222"),
+    eventname: 'rfe',
+    eventdes: 'adf',
+    regfee: 'fadf',
+    orgnam1: 'faf',
+    orgphone1: 'afdf',
+    orgnam2: 'asdf',
+    orgphone2: 'afad',
+    eventtype: 'Technical',
+    __v: 0
+  }
+]
 
 block style 
     style
@@ -8,3 +21,7 @@ block style
 block content 
     div.container
         h1 Technical
+        #events-list
+            each event in anst
+                .event 
+                    .event-name=event.eventname

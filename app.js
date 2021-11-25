@@ -11,11 +11,11 @@ const jwt = require("jsonwebtoken");
 // Mongoose
 var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
-mongoose.connect('mongodb://localhost/IWP1', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://localhost/IWP', { useNewUrlParser: true, useUnifiedTopology: true });
 
 
 // Define Mongoose Schema
-const IWP1Schema = new mongoose.Schema({
+const studSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true
@@ -40,8 +40,69 @@ const IWP1Schema = new mongoose.Schema({
     }
 });
 
-const Profile = mongoose.model('Profile', IWP1Schema);
+const orgSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    passwd:
+    {
+        type: String,
+        required: true
+    },
+    orgtype: {
+        type: String,
+        required: true
+    },
+    phone: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true
+    }
+});
 
+const eventSchema = new mongoose.Schema({
+    eventname: {
+        type: String,
+        required: true,
+        unique:true
+    },
+    eventdes:
+    {
+        type: String,
+        required: true
+    },
+    regfee: {
+        type: String,
+        required: true
+    },
+    orgnam1: {
+        type: String,
+        required: true
+    },
+    orgphone1: {
+        type: String,
+        required: true
+    },
+    orgnam2: {
+        type: String,
+    },    
+    orgphone2: {
+        type: String,
+    },
+    eventtype: {
+        type: String,
+        required: true
+    }
+});
+
+const studentProfile = mongoose.model('studentProfile', studSchema);
+const orgProfile = mongoose.model('orgProfile', orgSchema);
+const eventProfile = mongoose.model('eventProfile', eventSchema);
 
 //Express Specific stuff
 app.use('/static', express.static('static')); //For serving static files
@@ -62,32 +123,68 @@ app.get('/merch', (req, res) => {
     res.status(200).render('merch.pug', params);
 });
 
-app.get('/profile', (req, res) => {
+app.get('/studentprofile', (req, res) => {
     const params = {}
-    res.status(200).render('profile.pug', params);
+    res.status(200).render('studentprofile.pug', params);
 });
-app.post('/profile', (req, res) => {
+app.post('/studentprofile', (req, res) => {
     console.log(req.body);
-    var myData = new Profile(req.body);
-    myData.save().then(() => {
+    var myDatas = new studentProfile(req.body);
+    myDatas.save().then(() => {
             res.send("This item has been saved to database");
         }).catch(() => {
             res.send(400).send("Item was not saved to the database");
         })
-        // res.status(200).render('contact.pug');
 });
+
+app.get('/orgprofile', (req, res) => {
+    const params = {}
+    res.status(200).render('organizerprofile.pug', params);
+});
+
+app.post('/orgprofile', (req, res) => {
+    console.log(req.body);
+    var myDatao = new orgProfile(req.body);
+    myDatao.save().then(() => {
+            res.send("This item has been saved to database");
+        }).catch(() => {
+            res.send(400).send("Item was not saved to the database");
+        })
+});
+
+app.get('/eventcreation', (req, res) => {
+    const params = {}
+    res.status(200).render('createevent.pug', params);
+});
+
+app.post('/eventcreation', (req, res) => {
+    console.log(req.body);
+    var myDatae = new eventProfile(req.body);
+    myDatae.save().then(() => {
+            res.send("This item has been saved to database");
+        }).catch(() => {
+            res.send(400).send("Item was not saved to the database");
+        })
+});
+
 app.get('/registrations', (req, res) => {
     const params = {}
     res.status(200).render('registrations.pug', params);
 });
 
-app.get('/login', (req, res) => {
+app.get('/studentlogin', (req, res) => {
     const params = {}
-    res.status(200).render('login.pug', params);
+    res.status(200).render('studentlogin.pug', params);
 });
-app.post('/login', (req, res) => {
+
+app.get('/orglogin', (req, res) => {
+    const params = {}
+    res.status(200).render('organizerlogin.pug', params);
+});
+
+app.post('/studentlogin', (req, res) => {
     console.log(req.body);
-    Profile.find({$and:[{ name: req.body.name},{passwd: req.body.passwd}]}, function(err, docs){
+    studentProfile.find({$and:[{ name: req.body.name},{passwd: req.body.passwd}]}, function(err, docs){
             if (err) {
                 console.log('Hello');
                 return handleError(err);
@@ -99,10 +196,37 @@ app.post('/login', (req, res) => {
 
 });
 
-app.get('//technical', (req, res) => {
-    const params = {}
-    res.status(200).render('technical.pug', params);
+app.post('/orglogin', (req, res) => {
+    console.log(req.body);
+    orgProfile.find({$and:[{ name: req.body.name},{passwd: req.body.passwd}]}, function(err, docs){
+            if (err) {
+                console.log('Hello');
+                return handleError(err);
+            }
+            else {
+                console.log("First function call : ", docs[0]['passwd']);
+            }
+        });
+
 });
+
+
+
+app.get('//technical', (req, res) => {
+    var ans;
+        eventProfile.find({eventtype:"Technical" }, function(err, ans){
+            if (err){
+                console.log(err);
+            }
+            else{
+                console.log(ans);
+            }
+        });
+        var anst=ans;
+    res.render('technical.pug', anst=anst);
+});
+
+
 app.get('//non_technical', (req, res) => {
     const params = {}
     res.status(200).render('non_technical.pug', params);

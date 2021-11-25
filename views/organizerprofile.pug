@@ -1,0 +1,32 @@
+extends index.pug
+
+block style 
+    style
+      include ../static/style.css
+      include ../static/styleProfile.css
+
+block content 
+    div.container
+        h1 Organizer Profile
+        form(action="/orgprofile",method="post",class="myForm")
+            div.box
+                <i class="fa fa-user"></i> 
+                input(type="name",class="myInput",name="name",placeholder=" Enter Club/ Chapter Name: ")
+            div.box
+                <i class="fa fa-key"></i>
+                input(type="password",class="myInput",name="passwd",placeholder="Password")
+            div.box
+                input#chapter(type='radio', name='orgtype', value='Chapter')
+                label(for='chapter') Chapter
+                br
+                input#club(type='radio', name='orgtype', value='Club')
+                label(for='club') Club
+                br
+            div.box
+                <i class="fa fa-phone"></i>
+                input(type="phone",class="myInput",name="phone",placeholder="Enter Phone no.:")
+            div.box
+                <i class="fa fa-envelope"></i>
+                input(type="email",class="myInput",name="email",placeholder="Enter Email ID:")
+            button.BTN 
+                | Submit

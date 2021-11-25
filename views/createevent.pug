@@ -1,0 +1,44 @@
+extends index.pug
+
+block style 
+    style
+      include ../static/style.css
+      include ../static/styleProfile.css
+
+block content 
+    div.container
+        h1 Event Creation
+        form(action="/eventcreation",method="post",class="myForm")
+            div.box
+                <i class="fa fa-eventname"></i> 
+                input(type="eventname",class="myInput",name="eventname",placeholder=" Enter Event Name: ")
+            div.box
+                <i class="fa fa-eventdes"></i>
+                input(type="eventdes",class="myInput",name="eventdes",placeholder="Event Description: ")
+            div.box
+                <i class="fa fa-regfee"></i>
+                input(type="regfee",class="myInput",name="regfee",placeholder="Enter Registration fee: ")
+            div.box
+                <i class="fa fa-orgzrname"></i>
+                input(type="orgnam1",class="myInput",name="orgnam1",placeholder="Enter Organizer 1 name:")
+            div.box
+                <i class="fa fa-phone"></i>
+                input(type="orgphone1",class="myInput",name="orgphone1",placeholder="Enter Phone no. of Organizer 1:")
+            div.box
+                <i class="fa fa-orgzrname"></i>
+                input(type="orgnam2",class="myInput",name="orgnam2",placeholder="Enter Organizer 2 name:")
+            div.box
+                <i class="fa fa-phone"></i>
+                input(type="orgphone2",class="myInput",name="orgphone2",placeholder="Enter Phone no. of Organizer 3:")
+            div.box
+                input#chapter(type='radio', name='eventtype', value='Technical')
+                label(for='Technical') Technical
+                br
+                input#club(type='radio', name='eventtype', value='Non-Technical')
+                label(for='Non-Technical') Non-Technical
+                br
+                input#club(type='radio', name='eventtype', value='Webinar')
+                label(for='Webinar') Webinar
+                br
+            button.BTN 
+                | Submit

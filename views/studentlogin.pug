@@ -7,8 +7,8 @@ block style
 
 block content 
     div.container
-        h1 Login
-        form(action="/login",method="post",class="myForm")
+        h1 Student Login
+        form(action="/studentlogin",method="post",class="myForm")
             div.box
                 <i class="fa fa-user"></i> 
                 input(type="name",class="myInput",name="name",placeholder=" Enter your name")
@@ -17,3 +17,7 @@ block content
                 input(type="passwd",class="myInput",name="passwd",placeholder="Password")
             button.BTN 
                 | Submit
+            
+        form(method='get', action='/orglogin')
+            button.BTN 
+                | Login as Organizer
