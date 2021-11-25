@@ -1,9 +1,10 @@
-extends index.pug
-
+//- extends index.pug
+<script src="https://kit.fontawesome.com/0b92e2597e.js" crossorigin="anonymous"></script>
 block style 
     style
       include ../static/style.css
       include ../static/styleProfile.css
+      include ../static/login.css
 
 block content 
     div.container
@@ -11,13 +12,13 @@ block content
         form(action="/studentlogin",method="post",class="myForm")
             div.box
                 <i class="fa fa-user"></i> 
-                input(type="name",class="myInput",name="name",placeholder=" Enter your name")
+                input(type="name",class="myInput",name="name",placeholder="Enter your name")
             div.box
-                <i class="fa fa-pass"></i>
+                <i class="fa fa-key"></i>
                 input(type="passwd",class="myInput",name="passwd",placeholder="Password")
             button.BTN 
                 | Submit
             
-        form(method='get', action='/orglogin')
+        form(method='get', action='/orglogin',class="myForm")
             button.BTN 
                 | Login as Organizer

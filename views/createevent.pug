@@ -1,8 +1,9 @@
-extends index.pug
+extends index_organizer.pug
 
 block style 
     style
       include ../static/style.css
+      include ../static/style_organizer.css
       include ../static/styleProfile.css
 
 block content 
@@ -10,35 +11,37 @@ block content
         h1 Event Creation
         form(action="/eventcreation",method="post",class="myForm")
             div.box
-                <i class="fa fa-eventname"></i> 
+                <i class="fa fa-users"></i> 
                 input(type="eventname",class="myInput",name="eventname",placeholder=" Enter Event Name: ")
             div.box
-                <i class="fa fa-eventdes"></i>
+                <i class="fa fa-comment"></i>
                 input(type="eventdes",class="myInput",name="eventdes",placeholder="Event Description: ")
             div.box
-                <i class="fa fa-regfee"></i>
+                <i class="fa fa-credit-card-alt"></i>
                 input(type="regfee",class="myInput",name="regfee",placeholder="Enter Registration fee: ")
             div.box
-                <i class="fa fa-orgzrname"></i>
+                <i class="fa fa-user"></i>
                 input(type="orgnam1",class="myInput",name="orgnam1",placeholder="Enter Organizer 1 name:")
             div.box
                 <i class="fa fa-phone"></i>
                 input(type="orgphone1",class="myInput",name="orgphone1",placeholder="Enter Phone no. of Organizer 1:")
             div.box
-                <i class="fa fa-orgzrname"></i>
+                <i class="fa fa-user"></i>
                 input(type="orgnam2",class="myInput",name="orgnam2",placeholder="Enter Organizer 2 name:")
             div.box
                 <i class="fa fa-phone"></i>
                 input(type="orgphone2",class="myInput",name="orgphone2",placeholder="Enter Phone no. of Organizer 3:")
             div.box
-                input#Technical(type='radio', name='eventtype', value='Technical')
-                label(for='Technical') Technical
-                br
-                input#Nontechnical(type='radio', name='eventtype', value='Non-Technical')
-                label(for='Non-Technical') Non-Technical
-                br
-                input#Webinar(type='radio', name='eventtype', value='Webinar')
-                label(for='Webinar') Webinar
-                br
+                //- 
+                div.radioDiv
+                    input#chapter.radioInput(type='radio', name='eventtype', value='Technical')
+                    label(for='Technical',class="radioB") Technical
+                div.radioDiv.NTRadio
+                    input#club.radioInput(type='radio', name='eventtype', value='Non-Technical')
+                    label(for='Non-Technical',class="radioB") Non-Technical
+                div.radioDiv
+                    input#club.radioInput(type='radio', name='eventtype', value='Webinar')
+                    label(for='Webinar',class="radioB") Webinar
+                //- 
             button.BTN 
                 | Submit

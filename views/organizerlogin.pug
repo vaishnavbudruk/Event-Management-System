@@ -1,23 +1,25 @@
-extends index.pug
+//- extends index.pug
+<script src="https://kit.fontawesome.com/0b92e2597e.js" crossorigin="anonymous"></script>
 
 block style 
     style
       include ../static/style.css
       include ../static/styleProfile.css
+      include ../static/login.css
 
 block content 
     div.container
         h1 Organizer Login
         form(action="/orglogin",method="post",class="myForm")
             div.box
-                <i class="fa fa-user"></i> 
-                input(type="name",class="myInput",name="name",placeholder=" Enter Chapter/Club name: ")
+                <i class="fa fa-users"></i> 
+                input(type="name",class="myInput",name="name",placeholder="Enter Chapter/Club name ")
             div.box
-                <i class="fa fa-pass"></i>
-                input(type="passwd",class="myInput",name="passwd",placeholder="Password: ")
+                <i class="fa fa-key"></i>
+                input(type="passwd",class="myInput",name="passwd",placeholder="Password ")
             button.BTN 
                 | Submit
             
-        form(method='get', action='/studentlogin')
+        form(method='get', action='/studentlogin',class="myForm")
             button.BTN 
                 | Login as Student

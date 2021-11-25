@@ -3,15 +3,18 @@ extends index.pug
 block style 
     style
       include ../static/style.css
+      include ../static/event.css
 
 block content 
     div.container
         h1 Webinars
-    .blocks 
-        ul 
-            each article,i in anst 
-                    li= article.eventname
-                    li= article.eventdes 
-                    li= article.regfee 
-                    li= article.orgnam1
-                    li= article.orgphone1
+        br
+    div.blocks
+        each article,i in anst
+            form(action="/eventcreation",method="post",class="myForm") 
+                a(class="Ename" class="Title")= article.eventname
+                b(class="Ename")= article.eventdes 
+                c(class="Ename")= article.regfee 
+                d(class="Ename")= article.orgnam1
+                e(class="Ename")= article.orgphone1
+                input(type='submit', name='eventname', value='article.eventname', class="sub",class="BTN")

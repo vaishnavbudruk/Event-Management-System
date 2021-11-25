@@ -9,21 +9,30 @@ block style
 block content 
     section#Merchandise
         h2 Merchandise
-        a(href="http://localhost:8080//technical")
-            div(class="Merchcard")
-                h3 merch1
-                div( class="Merchcard-box" ) 
-                    div.Merchcard-img
-                        img(src="/static/Technical.png")
-        a(href="http://localhost:8080//non_technical") 
-            div.Merchcard
-                h3 merch2
-                div.Merchcard-box
-                    div.Merchcard-img
-                        img(src="/static/Non_Technical.png")
-        a(href="http://localhost:8080//webinar")
-            div.Merchcard
-                h3 merch3
-                div.Merchcard-box
-                    div.Merchcard-img
-                        img(src="/static/Webinars.png")
+        div(class="Merchcard")
+            h3 Tshirt
+            div( class="Merchcard-box" ) 
+                div.Merchcard-img
+                    img(src="/static/tshirt.jpg")
+                div.price
+                    p Price: 650/-
+                    button.BTN 
+                        | Buy
+        div.Merchcard
+            h3 Hoodie
+            div.Merchcard-box
+                div.Merchcard-img
+                    img(src="/static/hoodie.jpg")
+                div.price
+                    p Price: 700/-
+                    button.BTN 
+                        | Buy
+        div.Merchcard
+            h3#LEFT Polo Tshirt
+            div.Merchcard-box
+                div.Merchcard-img
+                    img(src="/static/polo.jpg")
+                div.price
+                    p Price: 600/-
+                    button.BTN 
+                        | Buy

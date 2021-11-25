@@ -56,3 +56,45 @@ h1 {
     width: 70%;
     text-align: center;
 }
+
+
+/* Radio buttons in profile */
+
+.radioDiv {
+    display: inline-block;
+    color: white;
+    width: 100px;
+    border: 2px solid black;
+    height: 30px;
+    background-color: black;
+    border-radius: 13px;
+    margin: 0px 11px;
+}
+
+#clubRadio {}
+
+.radioInput {
+    margin-top: 5px;
+}
+
+.radioDiv:hover {
+    background-color: rgb(70, 70, 70);
+    cursor: pointer;
+}
+
+label:hover {
+    cursor: pointer;
+}
+
+
+/* Radio ends */
+
+
+/* creayeevent radio */
+
+.NTRadio {
+    width: 150px;
+}
+
+
+/* end */

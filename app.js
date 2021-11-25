@@ -1,10 +1,9 @@
-
 const express = require('express');
 const path = require('path');
 const app = express();
 const port = 8081;
 
-const { check, validationResult} = require("express-validator/check");
+const { check, validationResult } = require("express-validator/check");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
@@ -20,8 +19,7 @@ const studSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    passwd:
-    {
+    passwd: {
         type: String,
         required: true
     },
@@ -46,8 +44,7 @@ const orgSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
-    passwd:
-    {
+    passwd: {
         type: String,
         required: true
     },
@@ -69,10 +66,9 @@ const eventSchema = new mongoose.Schema({
     eventname: {
         type: String,
         required: true,
-        unique:true
+        unique: true
     },
-    eventdes:
-    {
+    eventdes: {
         type: String,
         required: true
     },
@@ -90,7 +86,7 @@ const eventSchema = new mongoose.Schema({
     },
     orgnam2: {
         type: String,
-    },    
+    },
     orgphone2: {
         type: String,
     },
@@ -116,7 +112,15 @@ app.set('views', path.join(__dirname, 'views')); // set the views directory
 //ENDPOINTS
 app.get('/', (req, res) => {
     const params = {}
+    res.status(200).render('studentlogin.pug', params);
+});
+app.get('/home', (req, res) => {
+    const params = {}
     res.status(200).render('home.pug', params);
+});
+app.get('/home_organizer', (req, res) => {
+    const params = {}
+    res.status(200).render('home_organizer.pug', params);
 });
 app.get('/merch', (req, res) => {
     const params = {}
@@ -131,10 +135,10 @@ app.post('/studentprofile', (req, res) => {
     console.log(req.body);
     var myDatas = new studentProfile(req.body);
     myDatas.save().then(() => {
-            res.send("This item has been saved to database");
-        }).catch(() => {
-            res.send(400).send("Item was not saved to the database");
-        })
+        res.send("This item has been saved to database");
+    }).catch(() => {
+        res.send(400).send("Item was not saved to the database");
+    })
 });
 
 app.get('/orgprofile', (req, res) => {
@@ -146,10 +150,10 @@ app.post('/orgprofile', (req, res) => {
     console.log(req.body);
     var myDatao = new orgProfile(req.body);
     myDatao.save().then(() => {
-            res.send("This item has been saved to database");
-        }).catch(() => {
-            res.send(400).send("Item was not saved to the database");
-        })
+        res.send("This item has been saved to database");
+    }).catch(() => {
+        res.send(400).send("Item was not saved to the database");
+    })
 });
 
 app.get('/eventcreation', (req, res) => {
@@ -161,10 +165,10 @@ app.post('/eventcreation', (req, res) => {
     console.log(req.body);
     var myDatae = new eventProfile(req.body);
     myDatae.save().then(() => {
-            res.send("This item has been saved to database");
-        }).catch(() => {
-            res.send(400).send("Item was not saved to the database");
-        })
+        res.send("This item has been saved to database");
+    }).catch(() => {
+        res.send(400).send("Item was not saved to the database");
+    })
 });
 
 app.get('/registrations', (req, res) => {
@@ -184,74 +188,73 @@ app.get('/orglogin', (req, res) => {
 
 app.post('/studentlogin', (req, res) => {
     console.log(req.body);
-    studentProfile.find({$and:[{ name: req.body.name},{passwd: req.body.passwd}]}, function(err, docs){
-            if (err) {
-                console.log('Hello');
-                return handleError(err);
-            }
-            else {
-                console.log("First function call : ", docs[0]['passwd']);
-            }
-        });
+    const params = {}
+    studentProfile.find({ $and: [{ name: req.body.name }, { passwd: req.body.passwd }] }, function(err, docs) {
+        if (err) {
+            console.log('Hello');
+            return handleError(err);
+        } else {
+            res.status(200).render('home.pug', params);
+            console.log("First function call : ", docs[0]['passwd']);
+        }
+    });
 
 });
 
 app.post('/orglogin', (req, res) => {
     console.log(req.body);
-    orgProfile.find({$and:[{ name: req.body.name},{passwd: req.body.passwd}]}, function(err, docs){
-            if (err) {
-                console.log('Hello');
-                return handleError(err);
-            }
-            else {
-                console.log("First function call : ", docs[0]['passwd']);
-            }
-        });
+    const params = {}
+    orgProfile.find({ $and: [{ name: req.body.name }, { passwd: req.body.passwd }] }, function(err, docs) {
+        if (err) {
+            console.log('Hello');
+            return handleError(err);
+        } else {
+            res.status(200).render('home_organizer.pug', params);
+            console.log("First function call : ", docs[0]['passwd']);
+        }
+    });
 
 });
 
 
 
-app.get('//technical', (req, res) => {
+app.get('/technical', (req, res) => {
     var ans;
-        eventProfile.find({eventtype:"Technical" }, function(err, ans){
-            if (err){
-                console.log(err);
-            }
-            else{
-                console.log(ans);
-                res.render('technical.pug', {anst: ans});
-            }
-        });
-    
+    eventProfile.find({ eventtype: "Technical" }, function(err, ans) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log(ans);
+            res.render('technical.pug', { anst: ans });
+        }
+    });
+
 });
 
 
-app.get('//non_technical', (req, res) => {
+app.get('/non_technical', (req, res) => {
     var ans;
-        eventProfile.find({eventtype:"Non-Technical" }, function(err, ans){
-            if (err){
-                console.log(err);
-            }
-            else{
-                console.log(ans);
-                res.render('technical.pug', {anst: ans});
-            }
-        });
-    
+    eventProfile.find({ eventtype: "Non-Technical" }, function(err, ans) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log(ans);
+            res.render('non_technical.pug', { anst: ans });
+        }
+    });
+
 });
-app.get('//webinar', (req, res) => {
+app.get('/webinar', (req, res) => {
     var ans;
-        eventProfile.find({eventtype:"Webinar" }, function(err, ans){
-            if (err){
-                console.log(err);
-            }
-            else{
-                console.log(ans);
-                res.render('technical.pug', {anst: ans});
-            }
-        });
-    
+    eventProfile.find({ eventtype: "Webinar" }, function(err, ans) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log(ans);
+            res.render('webinar.pug', { anst: ans });
+        }
+    });
+
 });
 
 //Start the server
