@@ -25,7 +25,7 @@ const studSchema = new mongoose.Schema({
     },
     regno: {
         type: String,
-        unique: true,
+        unique: [true, 'That username is taken.'],
         required: true
     },
     phone: {
@@ -36,6 +36,7 @@ const studSchema = new mongoose.Schema({
         type: String,
         required: true
     }
+
 });
 
 const orgSchema = new mongoose.Schema({
@@ -95,7 +96,7 @@ const eventSchema = new mongoose.Schema({
         required: true
     }
 });
-
+// Create model from schema
 const studentProfile = mongoose.model('studentProfile', studSchema);
 const orgProfile = mongoose.model('orgProfile', orgSchema);
 const eventProfile = mongoose.model('eventProfile', eventSchema);
@@ -105,7 +106,6 @@ app.use('/static', express.static('static')); //For serving static files
 app.use(express.urlencoded({ extended: false }))
 
 //PUG SPecific stuff
-
 app.set('view engine', 'pug'); // set template engine as pug
 app.set('views', path.join(__dirname, 'views')); // set the views directory
 
@@ -127,14 +127,10 @@ app.get('/merch', (req, res) => {
     res.status(200).render('merch.pug', params);
 });
 
-app.get('/studentprofile', (req, res) => {
-    const params = {}
-    res.status(200).render('studentprofile.pug', params);
-});
 
 
 
-// organizer side events
+// ***** organizer side events *****
 app.get('/orgNonTech', (req, res) => {
     var ans;
     eventProfile.find({ eventtype: "Non-Technical" }, function(err, ans) {
@@ -168,9 +164,14 @@ app.get('/orgWebinars', (req, res) => {
         }
     });
 });
-
-
 // organizer side events (end)
+
+// ***** Profile creation *****
+app.get('/studentprofile', (req, res) => {
+    const params = {}
+    res.status(200).render('studentprofile.pug', params);
+});
+
 app.post('/studentprofile', (req, res) => {
     console.log(req.body);
     var myDatas = new studentProfile(req.body);
@@ -196,7 +197,9 @@ app.post('/orgprofile', (req, res) => {
         res.send(400).send("Item was not saved to the database");
     })
 });
+//  ***** END *****
 
+// ***** Event creation *****
 app.get('/eventcreation', (req, res) => {
     const params = {}
     res.status(200).render('createevent.pug', params);
@@ -211,20 +214,21 @@ app.post('/eventcreation', (req, res) => {
         res.send(400).send("Item was not saved to the database");
     })
 });
+// ***** Creation END *****
 
+//  ***** Registered Events *****
 app.get('/registrations', (req, res) => {
     const params = {}
     res.status(200).render('registrations.pug', params);
 });
+// END
+
+
+// ***** Login *****
 
 app.get('/studentlogin', (req, res) => {
     const params = {}
     res.status(200).render('studentlogin.pug', params);
-});
-
-app.get('/orglogin', (req, res) => {
-    const params = {}
-    res.status(200).render('organizerlogin.pug', params);
 });
 
 app.post('/studentlogin', (req, res) => {
@@ -241,6 +245,11 @@ app.post('/studentlogin', (req, res) => {
     });
 
 });
+app.get('/orglogin', (req, res) => {
+    const params = {}
+    res.status(200).render('organizerlogin.pug', params);
+});
+
 
 app.post('/orglogin', (req, res) => {
     console.log(req.body);
@@ -257,8 +266,9 @@ app.post('/orglogin', (req, res) => {
 
 });
 
+// ***** Login END *****
 
-
+// ***** Event registration *****
 app.get('/technical', (req, res) => {
     var ans;
     eventProfile.find({ eventtype: "Technical" }, function(err, ans) {
@@ -271,7 +281,6 @@ app.get('/technical', (req, res) => {
     });
 
 });
-
 
 app.get('/non_technical', (req, res) => {
     var ans;
@@ -297,6 +306,15 @@ app.get('/webinar', (req, res) => {
     });
 
 });
+//  ***** Registration Ends *****
+
+// ***** Payment *****
+app.get('/payment', (req, res) => {
+    const params = {}
+    res.status(200).render('payment.pug', params);
+});
+// ***** END *****
+
 
 //Start the server
 app.listen(port, () => {
