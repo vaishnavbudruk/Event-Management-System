@@ -6,7 +6,7 @@
 .container {
     display: flex;
     flex-direction: column;
-    min-height: 86.9vh;
+    min-height: 100vh;
     background: center/cover no-repeat url(/static/profile.jpg);
     z-index: -1;
     opacity: 0.88;

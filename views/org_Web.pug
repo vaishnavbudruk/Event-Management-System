@@ -1,0 +1,21 @@
+extends index_Organizer.pug
+
+block style 
+    style
+      include ../static/style.css
+      include ../static/event.css
+      include ../static/style_organizer.css
+
+
+block content 
+    div.container
+        h1 Webinars
+        br
+    div.blocks
+        each article,i in anst
+            form(action="/eventcreation",method="post",class="myForm") 
+                a(class="Ename" class="Title")= article.eventname
+                b(class="Ename")= article.eventdes 
+                c(class="Ename")= article.regfee 
+                d(class="Ename")= article.orgnam1
+                e(class="Ename")= article.orgphone1

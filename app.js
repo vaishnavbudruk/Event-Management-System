@@ -131,6 +131,46 @@ app.get('/studentprofile', (req, res) => {
     const params = {}
     res.status(200).render('studentprofile.pug', params);
 });
+
+
+
+// organizer side events
+app.get('/orgNonTech', (req, res) => {
+    var ans;
+    eventProfile.find({ eventtype: "Non-Technical" }, function(err, ans) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log(ans);
+            res.render('org_non_tech.pug', { anst: ans });
+        }
+    });
+});
+app.get('/orgTech', (req, res) => {
+    var ans;
+    eventProfile.find({ eventtype: "Technical" }, function(err, ans) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log(ans);
+            res.render('org_tech.pug', { anst: ans });
+        }
+    });
+});
+app.get('/orgWebinars', (req, res) => {
+    var ans;
+    eventProfile.find({ eventtype: "Webinar" }, function(err, ans) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log(ans);
+            res.render('org_Web.pug', { anst: ans });
+        }
+    });
+});
+
+
+// organizer side events (end)
 app.post('/studentprofile', (req, res) => {
     console.log(req.body);
     var myDatas = new studentProfile(req.body);
@@ -151,6 +191,7 @@ app.post('/orgprofile', (req, res) => {
     var myDatao = new orgProfile(req.body);
     myDatao.save().then(() => {
         res.send("This item has been saved to database");
+        // res.status(200).render('orglogin.pug', params);
     }).catch(() => {
         res.send(400).send("Item was not saved to the database");
     })
