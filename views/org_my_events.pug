@@ -19,14 +19,14 @@ block content
                 th Description
                 th Organizer name
                 th Org Phone No.
+                th Event type
             tbody
             //- each article in anst
-            tr
-                //- td
-                //- td #{article.eventname}
-                //- td #{article.regfee }
-                td Event 1
-                td 1000
-                td something
-                td Rohan
-                td 7676767676
+            each article,i in docs
+                tr
+                    td= article.eventname
+                    td= article.regfee
+                    td= article.eventdes
+                    td= article.orgnam1 
+                    td= article.orgphone1 
+                    td= article.eventtype

@@ -9,7 +9,7 @@ block style
 block content 
     div.container
         h1 Event Registration
-        form(action="/eventcreation",method="post",class="myForm")
+        form(action="/eventcreation/"+orgname,method="post",class="myForm")
             div.box
                 <i class="fa fa-users"></i> 
                 input(type="eventname",class="myInput",name="eventname",placeholder=" Enter Event Name: ")
@@ -26,12 +26,6 @@ block content
                 <i class="fa fa-phone"></i>
                 input(type="orgphone1",class="myInput",name="orgphone1",placeholder="Enter Phone no. of Organizer 1:")
             div.box
-                <i class="fa fa-user"></i>
-                input(type="orgnam2",class="myInput",name="orgnam2",placeholder="Enter Organizer 2 name:")
-            div.box
-                <i class="fa fa-phone"></i>
-                input(type="orgphone2",class="myInput",name="orgphone2",placeholder="Enter Phone no. of Organizer 3:")
-            div.box
                 //- 
                 div.radioDiv
                     input#chapter.radioInput(type='radio', name='eventtype', value='Technical')
@@ -42,6 +36,6 @@ block content
                 div.radioDiv
                     input#club.radioInput(type='radio', name='eventtype', value='Webinar')
                     label(for='Webinar',class="radioB") Webinar
-                input(type='hidden',name='orgname', value.{orgname})
+                input(type='hidden',name='orgname', value= orgname)
             button.BTN 
                 | Submit

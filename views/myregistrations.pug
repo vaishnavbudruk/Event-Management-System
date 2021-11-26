@@ -13,15 +13,14 @@ block content
     div.blocks
         table
             tr
-                th Sr No.
                 th Event Name
                 th Payment
             tbody
-            //- each article in anst
-            tr
-                //- td
-                //- td #{article.eventname}
-                //- td #{article.regfee }
-                td 1
-                td Event 1
-                td 1000
+            each article,i in params
+                tr
+                    td= article.eventname
+                    td 
+                        a(href="/payment")
+                //- td 1
+                //- td Event 1
+                //- td 1000

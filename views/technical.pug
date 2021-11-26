@@ -11,12 +11,12 @@ block content
         br
     div.blocks
         each article,i in anst
-            form(action="/myregistrations",method="post",class="myForm") 
+            form(action="/myregistrations/"+regno,method="post",class="myForm") 
                 a(class="Ename" class="Title")= article.eventname
                 b(class="Ename")= article.eventdes 
                 c(class="Ename")= article.regfee 
                 d(class="Ename")= article.orgnam1
                 e(class="Ename")= article.orgphone1
-                input(type='hidden',name='name', value.{regno},)
-                input(type='hidden',name='eventname', value.{article.eventname},)
+                input(type='hidden',name='regno', value='19BCE0061',)
+                input(type='hidden',name='eventname', value= article.eventname)
                 input(type='submit', value='Register' class="sub",class="BTN")
