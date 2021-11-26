@@ -365,27 +365,7 @@ app.get('/technical/:id', (req, res) => {
     eventProfile.find({ eventtype: "Technical" }, function(err, ans) {
         if (err) {
             console.log(err);
-        } else {
-            console.log(ans);
-            res.render('technical.pug', { anst: ans, regno:req.params.id});
-        }
-    });
-
-});
-
-app.get('/non_technical', (req, res) => {
-    var ans;
-    eventProfile.find({ eventtype: "Non-Technical" }, function(err, ans) {
-        if (err) {
-            console.log(err);
-        } else {
-            console.log(ans);
-            res.render('non_technical.pug', { anst: ans });
-        }
-    });
-
-});
-app.get('/webinar', (req, res) => {
+ jj', (req, res) => {
     var ans;
     eventProfile.find({ eventtype: "Webinar" }, function(err, ans) {
         if (err) {
