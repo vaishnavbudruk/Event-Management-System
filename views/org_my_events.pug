@@ -1,27 +1,32 @@
-extends index.pug
+extends index_Organizer.pug
 
 block style 
     style
       include ../static/style.css
       include ../static/event.css
       include ../static/style_myReg.css
+      include ../static/style_organizer.css
 
 block content 
     div.container
-        h1 My Registrations
+        h1 List of registrations
         br
     div.blocks
         table
             tr
-                th Sr No.
                 th Event Name
-                th Payment
+                th Reg Fee
+                th Description
+                th Organizer name
+                th Org Phone No.
             tbody
             //- each article in anst
             tr
                 //- td
                 //- td #{article.eventname}
                 //- td #{article.regfee }
-                td 1
                 td Event 1
                 td 1000
+                td something
+                td Rohan
+                td 7676767676

@@ -91,7 +91,7 @@ const eventregSchema = new mongoose.Schema({
 });
 
 const eventSchema = new mongoose.Schema({
-    orgname:{
+    orgname: {
         type: String,
         required: true,
     },
@@ -229,44 +229,47 @@ app.post('/orgprofile', (req, res) => {
 
 // ***** Event creation *****
 app.get('/eventcreation', (req, res) => {
-    var orgname = (req.body.orgname);    
-    res.status(200).render('createevent.pug', {orgname:orgname});
+    var orgname = (req.body.orgname);
+    res.status(200).render('createevent.pug', { orgname: orgname });
 });
 
 app.post('/eventcreation', (req, res) => {
     console.log(req.body);
-    var myDatae = new eventProfile(req.body);   
-    var params; 
+    var myDatae = new eventProfile(req.body);
+    var params;
     myDatae.save().then(() => {
         eventProfile.find({ orgname: req.body.orgname }, function(err, docs) {
             if (err) {
                 console.log('Hello');
                 return handleError(err);
             } else {
-                res.status(200).render('myevent.pug', {params: docs});
+                res.status(200).render('myevent.pug', { params: docs });
             }
         });
-        
+
     }).catch(() => {
         res.send(400).send("Item was not saved to the database");
     })
 });
 // ***** Creation END *****
-
+app.get('/myregistrations', (req, res) => {
+    const params = {}
+    res.status(200).render('myregistrations.pug', params);
+});
 app.post('/myregistrations', (req, res) => {
     console.log(req.body);
-    var myDatae = new eventregProfile(req.body);   
-    var params; 
+    var myDatae = new eventregProfile(req.body);
+    var params;
     myDatae.save().then(() => {
         eventregProfile.find({ orgname: req.body.orgname }, function(err, docs) {
             if (err) {
                 console.log('Hello');
                 return handleError(err);
             } else {
-                res.status(200).render('myregistrations.pug', {params: docs});
+                res.status(200).render('myregistrations.pug', { params: docs });
             }
         });
-        
+
     }).catch(() => {
         res.send(400).send("Item was not saved to the database");
     })
@@ -275,14 +278,14 @@ app.post('/myregistrations', (req, res) => {
 
 app.post('/eventregistrations', (req, res) => {
     console.log(req.body);
-        eventregProfile.find({ $and: [{ eventname: req.body.eventname }, { regno: req.body.regno }] }, function(err, docs) {
-            if (err) {
-                console.log('Hello');
-                return handleError(err);
-            } else {
-                res.status(200).render('eventregistrations.pug', {params: docs});
-            }
-        });
+    eventregProfile.find({ $and: [{ eventname: req.body.eventname }, { regno: req.body.regno }] }, function(err, docs) {
+        if (err) {
+            console.log('Hello');
+            return handleError(err);
+        } else {
+            res.status(200).render('eventregistrations.pug', { params: docs });
+        }
+    });
 });
 
 
@@ -293,16 +296,38 @@ app.get('/studentlogin', (req, res) => {
 
 app.post('/studentlogin', (req, res) => {
     console.log(req.body);
-    const params = {}
-    studentProfile.find({ $and: [{ name: req.body.name }, { passwd: req.body.passwd }] }, function(err, docs) {
+    const params = {};
+    // studentProfile.find({ $and: [{ passwd: req.body.passwd }, { name: req.body.name }] }, function(err, docs) {
+    //     console.log(docs);
+    //     if (err) {
+    //         console.log('Hello');
+    //         return handleError(err);
+    //     } else {
+    //         res.status(200).render('home.pug', params);
+    //         console.log("First function call : ", docs[0]['passwd']);
+    //     }
+    // });
+    studentProfile.find({ name: req.body.name }, function(err, docs) {
         if (err) {
             console.log('Hello');
             return handleError(err);
         } else {
-            res.status(200).render('home.pug', params);
-            console.log("First function call : ", docs[0]['passwd']);
+            // if (docs.)
+            console.log('check');
+            if (docs == []) {
+                // return handleError(err);
+                res.status(200).render('studentlogin.pug', params);
+            } else {
+                if (docs[0].passwd == req.body.passwd) {
+                    res.status(200).render('home.pug', params);
+                } else {
+                    res.status(200).render('studentlogin.pug', params);
+                }
+            }
+            console.log(docs);
+
         }
-    });
+    })
 
 });
 app.get('/orglogin', (req, res) => {
@@ -379,4 +404,14 @@ app.get('/payment', (req, res) => {
 //Start the server
 app.listen(port, () => {
     console.log(`The application started successfully on port ${port}`);
+});
+
+//Organization navbar
+app.get('/org_event_registrations', (req, res) => {
+    const params = {}
+    res.status(200).render('org_event_registrations.pug', params);
+});
+app.get('/org_my_events', (req, res) => {
+    const params = {}
+    res.status(200).render('org_my_events.pug', params);
 });
