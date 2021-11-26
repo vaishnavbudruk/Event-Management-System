@@ -62,7 +62,38 @@ const orgSchema = new mongoose.Schema({
     }
 });
 
+const eventregSchema = new mongoose.Schema({
+    eventname: {
+        type: String,
+        required: true,
+    },
+    name: {
+        type: String,
+        required: true
+    },
+    passwd: {
+        type: String,
+        required: true
+    },
+    regno: {
+        type: String,
+        required: true
+    },
+    phone: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true
+    }
+});
+
 const eventSchema = new mongoose.Schema({
+    orgname:{
+        type: String,
+        required: true,
+    },
     eventname: {
         type: String,
         required: true,
@@ -84,21 +115,18 @@ const eventSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    orgnam2: {
-        type: String,
-    },
-    orgphone2: {
-        type: String,
-    },
+
     eventtype: {
         type: String,
         required: true
     }
 });
 
+
 const studentProfile = mongoose.model('studentProfile', studSchema);
 const orgProfile = mongoose.model('orgProfile', orgSchema);
 const eventProfile = mongoose.model('eventProfile', eventSchema);
+const eventregProfile = mongoose.model('eventregProfile', eventregSchema);
 
 //Express Specific stuff
 app.use('/static', express.static('static')); //For serving static files
@@ -135,7 +163,7 @@ app.post('/studentprofile', (req, res) => {
     console.log(req.body);
     var myDatas = new studentProfile(req.body);
     myDatas.save().then(() => {
-        res.send("This item has been saved to database");
+        res.status(200).render('index.pug', params);
     }).catch(() => {
         res.send(400).send("Item was not saved to the database");
     })
@@ -150,31 +178,67 @@ app.post('/orgprofile', (req, res) => {
     console.log(req.body);
     var myDatao = new orgProfile(req.body);
     myDatao.save().then(() => {
-        res.send("This item has been saved to database");
+        res.status(200).render('index_Organizer.pug', params);
     }).catch(() => {
         res.send(400).send("Item was not saved to the database");
     })
 });
 
 app.get('/eventcreation', (req, res) => {
-    const params = {}
-    res.status(200).render('createevent.pug', params);
+    var orgname = (req.body.orgname);    
+    res.status(200).render('createevent.pug', {orgname:orgname});
 });
 
 app.post('/eventcreation', (req, res) => {
     console.log(req.body);
-    var myDatae = new eventProfile(req.body);
+    var myDatae = new eventProfile(req.body);   
+    var params; 
     myDatae.save().then(() => {
-        res.send("This item has been saved to database");
+        eventProfile.find({ orgname: req.body.orgname }, function(err, docs) {
+            if (err) {
+                console.log('Hello');
+                return handleError(err);
+            } else {
+                res.status(200).render('myevent.pug', {params: docs});
+            }
+        });
+        
     }).catch(() => {
         res.send(400).send("Item was not saved to the database");
     })
 });
 
-app.get('/registrations', (req, res) => {
-    const params = {}
-    res.status(200).render('registrations.pug', params);
+app.post('/myregistrations', (req, res) => {
+    console.log(req.body);
+    var myDatae = new eventregProfile(req.body);   
+    var params; 
+    myDatae.save().then(() => {
+        eventregProfile.find({ orgname: req.body.orgname }, function(err, docs) {
+            if (err) {
+                console.log('Hello');
+                return handleError(err);
+            } else {
+                res.status(200).render('myregistrations.pug', {params: docs});
+            }
+        });
+        
+    }).catch(() => {
+        res.send(400).send("Item was not saved to the database");
+    })
 });
+
+app.post('/eventregistrations', (req, res) => {
+    console.log(req.body);
+        eventregProfile.find({ $and: [{ eventname: req.body.eventname }, { regno: req.body.regno }] }, function(err, docs) {
+            if (err) {
+                console.log('Hello');
+                return handleError(err);
+            } else {
+                res.status(200).render('eventregistrations.pug', {params: docs});
+            }
+        });
+});
+
 
 app.get('/studentlogin', (req, res) => {
     const params = {}

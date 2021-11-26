@@ -42,6 +42,6 @@ block content
                 div.radioDiv
                     input#club.radioInput(type='radio', name='eventtype', value='Webinar')
                     label(for='Webinar',class="radioB") Webinar
-                //- 
+                input(type='hidden',name='orgname', value.{orgname})
             button.BTN 
                 | Submit

@@ -11,10 +11,11 @@ block content
         br
     div.blocks
         each article,i in anst
-            form(action="/eventcreation",method="post",class="myForm") 
+            form(action="/myregistrations",method="post",class="myForm") 
                 a(class="Ename" class="Title")= article.eventname
                 b(class="Ename")= article.eventdes 
                 c(class="Ename")= article.regfee 
                 d(class="Ename")= article.orgnam1
                 e(class="Ename")= article.orgphone1
-                input(type='submit', name='eventname', value='article.eventname', class="sub",class="BTN")
+                input(type='hidden',name='eventname', value.{article.eventname},)
+                input(type='submit', value='Register' class="sub",class="BTN")
