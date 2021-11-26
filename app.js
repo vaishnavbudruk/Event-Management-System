@@ -122,12 +122,8 @@ const eventSchema = new mongoose.Schema({
         required: true
     }
 });
-<<<<<<< HEAD
 
 
-=======
-// Create model from schema
->>>>>>> 515cb2d659cd34bb5b37ba07e8e646e94575111b
 const studentProfile = mongoose.model('studentProfile', studSchema);
 const orgProfile = mongoose.model('orgProfile', orgSchema);
 const eventProfile = mongoose.model('eventProfile', eventSchema);
@@ -223,12 +219,8 @@ app.post('/orgprofile', (req, res) => {
     console.log(req.body);
     var myDatao = new orgProfile(req.body);
     myDatao.save().then(() => {
-<<<<<<< HEAD
-        res.status(200).render('index_Organizer.pug', params);
-=======
         res.send("This item has been saved to database");
-        // res.status(200).render('orglogin.pug', params);
->>>>>>> 515cb2d659cd34bb5b37ba07e8e646e94575111b
+        res.status(200).render('orglogin.pug', params);
     }).catch(() => {
         res.send(400).send("Item was not saved to the database");
     })
@@ -261,7 +253,6 @@ app.post('/eventcreation', (req, res) => {
 });
 // ***** Creation END *****
 
-<<<<<<< HEAD
 app.post('/myregistrations', (req, res) => {
     console.log(req.body);
     var myDatae = new eventregProfile(req.body);   
@@ -279,17 +270,8 @@ app.post('/myregistrations', (req, res) => {
     }).catch(() => {
         res.send(400).send("Item was not saved to the database");
     })
-=======
-//  ***** Registered Events *****
-app.get('/registrations', (req, res) => {
-    const params = {}
-    res.status(200).render('registrations.pug', params);
->>>>>>> 515cb2d659cd34bb5b37ba07e8e646e94575111b
 });
-// END
 
-
-// ***** Login *****
 
 app.post('/eventregistrations', (req, res) => {
     console.log(req.body);
