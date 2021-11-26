@@ -1,0 +1,27 @@
+//- extends index_organizer.pug
+<script src="https://kit.fontawesome.com/0b92e2597e.js" crossorigin="anonymous"></script>
+
+block style 
+    style
+      include ../static/payment.css
+
+block content 
+    div.container
+        h1 Payment Portal
+        form(action="/payment",method="post",class="myForm")
+            div.box
+                <i class="fa fa-user"></i> 
+                input(type="name",class="myInput",name="name",placeholder=" Enter your name: ")
+            div.box
+                <i class="fa fa-credit-card"></i>
+                input(type="password",class="myInput",name="passwd",placeholder="card number")
+            div.box
+                div.radioDiv
+                    input(type="amount",class="myInput",class="box",name="passwd",placeholder="Expiry (MM/YY)")
+                div.radioDiv#clubRadio
+                    input(type="password",class="myInput",class="box",name="passwd",placeholder="CVV")
+            div.box
+                <i class="fa fa-money"></i>
+                input(type="phone",class="myInput",name="phone",placeholder="Amount")
+            button.BTN 
+                | Pay

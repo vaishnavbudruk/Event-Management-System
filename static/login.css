@@ -5,3 +5,7 @@
 h1 {
     margin-top: 140px;
 }
+
+a {
+    text-decoration: none;
+}

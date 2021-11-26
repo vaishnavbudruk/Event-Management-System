@@ -1,6 +1,7 @@
 extends index_Organizer.pug
 
 block script
+<script src="https://kit.fontawesome.com/0b92e2597e.js" crossorigin="anonymous"></script>
 
 block style 
     style
@@ -14,7 +15,7 @@ block content
 
     section#EventSection
         h2 Event Types
-        a(href="http://localhost:8081/technical")
+        a(href="/orgTech")
             div(class="card")
                 h3 Technical
                 div( class="card-box" ) 
@@ -22,7 +23,7 @@ block content
                         img(src="/static/Technical.png")
                     div.card-content
                         p technical ke bare mein kuch
-        a(href="http://localhost:8081/non_technical") 
+        a(href="/orgNonTech") 
             div.card
                 h3 Non-Technical
                 div.card-box
@@ -30,7 +31,7 @@ block content
                         img(src="/static/Non_Technical.png")
                     div.card-content
                         p non-technical ke bare mein
-        a(href="http://localhost:8081/webinar")
+        a(href="/orgWebinars")
             div.card
                 h3 Webinars
                 div.card-box
